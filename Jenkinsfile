@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         // AZURE_CREDENTIALS_ID = 'azure-service-principal' // Must be configured in Jenkins credentials
         // ACR_NAME = "acraryan01"
         // ACR_LOGIN_SERVER = "acraryan01.azurecr.io"
