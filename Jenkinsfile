@@ -2,15 +2,15 @@ pipeline {
     agent any
 
     environment {
-        // DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        AZURE_CREDENTIALS_ID = 'azure-service-principal' // Must be configured in Jenkins credentials
-        ACR_NAME = "acraryan01"
-        ACR_LOGIN_SERVER = "acraryan01.azurecr.io"
-        IMAGE_NAME = "mynodeapp"
-        TAG = "latest"
-        RESOURCE_GROUP = "examResourceGroup"
-        LOCATION = "East US"
-        // IMAGE_NAME = 'yourusername/flask-app'  // Replace with your Docker Hub repo name
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        // AZURE_CREDENTIALS_ID = 'azure-service-principal' // Must be configured in Jenkins credentials
+        // ACR_NAME = "acraryan01"
+        // ACR_LOGIN_SERVER = "acraryan01.azurecr.io"
+        // IMAGE_NAME = "mynodeapp"
+        // TAG = "latest"
+        // RESOURCE_GROUP = "examResourceGroup"
+        // LOCATION = "East US"
+        IMAGE_NAME = 'aryanjindal455/flask-app'  // Replace with your Docker Hub repo name
     }
 
     stages {
