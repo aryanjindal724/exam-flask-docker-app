@@ -3,44 +3,31 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
-        // AZURE_CREDENTIALS_ID = 'azure-service-principal' // Must be configured in Jenkins credentials
-        // ACR_NAME = "acraryan01"
-        // ACR_LOGIN_SERVER = "acraryan01.azurecr.io"
-        // IMAGE_NAME = "mynodeapp"
-        // TAG = "latest"
-        // RESOURCE_GROUP = "examResourceGroup"
-        // LOCATION = "East US"
-        IMAGE_NAME = 'aryanjindal455/flask-app'  // Replace with your Docker Hub repo name
+        IMAGE_NAME = 'aryanjindal455/flask-app'  // Your Docker Hub repo name
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/aryanjindal724/exam-flask-docker-app.git'  // Replace with your repo
+                git branch: 'main', url: 'https://github.com/aryanjindal724/exam-flask-docker-app.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("${IMAGE_NAME}")
-                }
+                bat "docker build -t %IMAGE_NAME% ."
             }
         }
 
         stage('Login to Docker Hub') {
             steps {
-                script {
-                    sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
-                }
+                bat "echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin"
             }
         }
 
         stage('Push Image to Docker Hub') {
             steps {
-                script {
-                    docker.image("${IMAGE_NAME}").push()
-                }
+                bat "docker push %IMAGE_NAME%"
             }
         }
     }
